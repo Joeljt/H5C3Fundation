@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>测试 CSS 选择器</title>
+  <style>
+      /* 这是 CSS 注释的写法 */
+
+
+
+      /* 测试属性选择器 */
+      /* 要求 href 属性包含 test，i 表示忽略大小写 */
+      a[href*="cEsHI" i] {
+          background-color: red;
+      }
+
+      /* ~= 和 *= 作用类似，*= 是单纯的 contains，
+        但 ~= 匹配的是 href 用空格分隔开后，是否有某个值与设置的值完全相等
+      */
+      a[href~="for"] {
+          background-color: skyblue;
+      }
+
+      /* 要求 href 属性以 https 开头，以 .org 结尾 */
+      a[href^="https"][href$=".com"] {
+          color: green;
+      }
+
+
+
+      /* 并集选择器 */
+      div#testId.testClass {
+          font-size: 30px;
+      }
+
+      /* 交集选择器 */
+      div, a {
+          color: pink;
+      }
+
+      div p span.testClass {
+          background-color: greenyellow;
+      }
+
+      a > span {
+          background-color: darkmagenta;
+      }
+
+      .testSiblings + span {
+          background-color: khaki;
+      }
+
+      .testSiblings:hover {
+          background-color: darkmagenta;
+      }
+
+      .testDiv span:first-of-type {
+          background-color: peru;
+      }
+
+      .test::before {
+          content: open-quote;
+      }
+      .test::after {
+          content: open-quote;
+      }
+
+      span[data-descr] {
+          position: relative;
+          text-decoration: underline;
+          color: #00F;
+          cursor: help;
+      }
+
+      span[data-descr]:hover::before,
+      span[data-descr]:focus::before {
+          content: attr(data-descr);
+          position: absolute;
+          left: 0;
+          top: 24px;
+          min-width: 200px;
+          border: 1px #aaaaaa solid;
+          border-radius: 10px;
+          background-color: #ffffcc;
+          padding: 12px;
+          color: #000000;
+          font-size: 14px;
+          z-index: 1;
+      }
+
+      p :not(span) {
+          background-color: brown;
+      }
+
+  </style>
+</head>
+<body>
+
+<a href="https://www.google.com">Google</a>
+<a href="cEsHI">空链接</a>
+<a href="this is for attr selector">测试标签选择器</a>
+
+<div class="testClass" id="testId">
+  测试并集选择器
+</div>
+
+<div>
+  <p><span class="testClass">我是div下的p下的span</span></p>
+</div>
+
+<div>
+  <p>
+    <a>
+      <span>我的疯狂嵌套的span</span>
+    </a>
+  </p>
+</div>
+
+<div class="testDiv">
+  <p>第零个是 p 标签</p>
+  <p class="testSiblings">第一个是 p 标签</p>
+  <span>插入的这个 span 会导致 + 无法选中任何元素</span>
+  <p>第二个是 p 标签</p>
+  <p>第三个是 p 标签</p>
+  <p>第四个是 p 标签</p>
+  <span>第五个是 span 标签</span>
+  <p>第六个是 p 标签</p>
+  <p>第七个是 p 标签</p>
+  <span>第八个是 span 标签</span>
+  <p>第九个是 p 标签</p>
+</div>
+
+<p class="test">
+  8月15日是日本战败纪念日，日本首相菅义伟向靖国神社供奉祭品。对此，中方表示：已向日方提出严正交涉，中方严肃敦促日方深刻汲取历史教训，切实正视和反省侵略历史。
+</p>
+
+<p>Here we have some
+  <span tabindex="1000" data-descr="collection of words and punctuation">text</span> with a few
+  <span tabindex="0" data-descr="small popups that appear when hovering">tooltips</span>.
+  <h2>我不是span</h2>
+  <p>我也不是span</p>
+</p>
+
+</body>
+</html>
