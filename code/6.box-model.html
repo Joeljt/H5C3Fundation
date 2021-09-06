@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Box Model</title>
+  <style>
+    .outer {
+      width: 800px;
+      height: 200px;
+      margin-bottom: 50px;
+      border: 1px solid black;
+      overflow: hidden;
+    }
+
+    .inner {
+      width: 200px;
+      height: 400px;
+      background-color: pink;
+    }
+
+
+
+    .sibling1 {
+      width: 200px;
+      height: 200px;
+      border: 1px solid darkred;
+      margin-bottom: 50px;
+    }
+
+    .sibling2 {
+      width: 200px;
+      height: 200px;
+      border: 1px solid darkred;
+      margin-top: 50px;
+    }
+
+
+    .outer2 {
+      width: 300px;
+      height: 300px;
+      margin-top: 50px;
+      background-color: #bfa;
+      overflow: auto;
+    }
+
+    .inner2 {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+      margin-top: 100px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="outer">
+  <div class="inner">
+    测试 overflow
+  </div>
+</div>
+
+<div class="sibling1">1</div>
+<div class="sibling2">2</div>
+
+<div class="outer2">
+  <div class="inner2">
+    测试外边距合并
+  </div>
+</div>
+
+
+
+</body>
+</html>
