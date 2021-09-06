@@ -10,7 +10,7 @@
 
       /* 测试属性选择器 */
       /* 要求 href 属性包含 test，i 表示忽略大小写 */
-      a[href*="cEsHI" i] {
+      a[href*="cEsHI" i]{
           background-color: red;
       }
 
@@ -88,8 +88,21 @@
           z-index: 1;
       }
 
-      p :not(span) {
-          background-color: brown;
+      #winning {
+          background-color: red;
+          border: 10px solid black;
+          font-size: 50px;
+      }
+
+      .better {
+          background-color: gray;
+          border: none !important;
+      }
+
+      p {
+          background-color: blue;
+          color: white;
+          padding: 15px;
       }
 
   </style>
@@ -140,6 +153,9 @@
   <h2>我不是span</h2>
   <p>我也不是span</p>
 </p>
+
+<p class="better">This is a paragraph.</p>
+<p class="better" id="winning">One selector to rule them all!</p>
 
 </body>
 </html>
