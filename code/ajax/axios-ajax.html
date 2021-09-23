@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Axios Ajax</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <style>
+
+        body {
+            background-color: #000;
+        }
+        div {
+            width: 200px;
+            height: 100px;
+            border: 1px solid rebeccapurple;
+        }
+    </style>
+
+</head>
+<body>
+    <button class="get">Axios GET</button>
+    <button class="post">Axios POST</button>
+    <button class="ajax">Axios AJAX</button>
+
+    <div></div>
+
+    <script>
+
+        axios.defaults.baseURL = "http://127.0.0.1:8000"
+
+        $("button").eq(0).click(function (){
+            axios.get("/axios-server", {
+                params: {
+                    a: 10, b: 30
+                },
+                headers: {
+                    key122: "value122"
+                }
+            }).then(function (data) {
+                console.log("Axios " + data);
+            });
+        });
+
+
+        $("button").eq(1).click(function (){
+        });
+
+        $("button").eq(2).click(function (){
+        });
+
+    </script>
+
+</body>
+</html>

@@ -36,6 +36,53 @@ app.get("/timeout-error-server", (request, response) => {
   }, 1500);
 });
 
+// 测试 jQuery
+app.all("/jq-server", (request, response) => {
+  response.setHeader("Access-Control-Allow-Origin", "*");
+  response.setHeader("Access-Control-Allow-Headers", "*");
+  let obj = { name: 'testName', age: 24 }
+  response.send(JSON.stringify(obj));
+});
+
+// 测试 axios
+app.all("/axios-server", (request, response) => {
+  response.setHeader("Access-Control-Allow-Origin", "*");
+  response.setHeader("Access-Control-Allow-Headers", "*");
+  let obj = { name: 'axios server', age: 24 }
+  response.send(JSON.stringify(obj));
+});
+
+
+// 测试 jsonp
+app.all("/jsonp-server", (request, response) => {
+  response.setHeader("Access-Control-Allow-Origin", "*");
+  response.setHeader("Access-Control-Allow-Headers", "*");
+  let obj;
+  if (request.query.name === 'Joey') {
+    obj = {desc: '用户名已注册', code: 500};
+  } else {
+    obj = {desc: '用户名可以使用', code: 200};
+  }
+  // 需要转成 string 传入才可以
+  response.send(`handleCallback(${JSON.stringify(obj)})`);
+  // response.send(`handleCallback(${obj})`);
+});
+
+// 测试 jsonp
+app.all("/jq-jsonp-server", (request, response) => {
+  response.setHeader("Access-Control-Allow-Origin", "*");
+  response.setHeader("Access-Control-Allow-Headers", "*");
+  let obj;
+  if (request.query.name === 'Joey') {
+    obj = {desc: '用户名已注册', code: 500};
+  } else {
+    obj = {desc: '用户名可以使用', code: 200};
+  }
+  // 需要转成 string 传入才可以
+  response.send(`${request.query.callback}(${JSON.stringify(obj)})`);
+  // response.send(`handleCallback(${obj})`);
+});
+
 // 监听端口启动服务
 app.listen("8000", () => {
   console.log("服务已经启动， 8000 端口监听中....")

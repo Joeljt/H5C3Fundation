@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax GET</title>
+  <style>
+    body {
+      background-color: black;
+    }
+
+    p {
+      color: wheat;
+    }
+
+  </style>
+
+  <script>
+  window.onload = function () {
+    let element = document.querySelector("input");
+    let headElement = document.querySelector("head");
+
+    element.onblur = function () {
+      let scriptElement = document.createElement("script");
+      scriptElement.src = "http://localhost:8000/jsonp-server?name=" + this.value;
+      headElement.appendChild(scriptElement);
+    };
+  };
+
+  function handleCallback(response) {
+    console.log(response);
+    // 回调里收到的就是对象，可以直接用
+    if (response.code === 500) {
+      document.querySelector("input").style.border = "1px solid red";
+    }
+    document.getElementsByTagName("p")[0].innerHTML = response.desc;
+  }
+
+  </script>
+
+</head>
+<body>
+
+  <input type="text">
+  <p></p>
+
+</body>
+</html>
