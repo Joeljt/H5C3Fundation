@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>浮动</title>
+  <style>
+    .box1 {
+      width: 150px;
+      height: 150px;
+      background-color: pink;
+      float: left;
+    }
+
+
+    .box2 {
+      width: 200px;
+      height: 200px;
+      background-color: #bfa;
+      float: right;
+    }
+
+    section {
+      border: 1px solid blue;
+      width: 100%;
+      /*
+        如果不给父元素设置浮动，那么由于浮动元素脱离标准流
+        父元素只能包裹住 p 元素，而无法包含浮动元素的高，从而导致视觉上的「高度塌陷」
+      */
+      /*float: left;*/
+    }
+
+    div {
+      margin: 5px;
+      width: 50px;
+      height: 150px;
+    }
+
+    .left {
+      float: left;
+      background: pink;
+    }
+
+    .right {
+      float: right;
+      background: cyan;
+    }
+
+    /*
+      clearfix:
+        ::before
+    */
+    .clearfix::before,
+    .clearfix::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+  </style>
+</head>
+<body>
+<div class="box1"></div>
+
+
+<p>
+  新月社的声明〔7〕中，虽说并无什么组织，在论文里，也似乎痛恶无产阶级式的“组织”，“集团”这些话，但其实是有组织的，至少，关于政治的论文，这一本里都互相“照应”；关于文艺，则这一篇是登在上面的同一批评家所作的《文学是有阶级性的吗？》的余波。在那一篇里有一段说：“……但是不幸得很，没有一本这类的书能被我看懂。……最使我感得困难的是文字，……简直读起来比天书还难。……现在还没有一个中国人，用中国人所能看得懂的文字，写一篇文章告诉我们无产文学的理论究竟是怎么一回事。”字旁也有圆圈，怕排印麻烦，恕不照画了。总之，梁先生自认是一切中国人的代表，这些书既为自己所不懂，也就是为一切中国人所不懂，应该在中国断绝其生命，于是出示曰“此风断不可长”云。新月社的声明〔7〕中，虽说并无什么组织，在论文里，也似乎痛恶无产阶级式的“组织”，“集团”这些话，但其实是有组织的，至少，关于政治的论文，这一本里都互相“照应”；关于文艺，则这一篇是登在上面的同一批评家所作的《文学是有阶级性的吗？》的余波。在那一篇里有一段说：“……但是不幸得很，没有一本这类的书能被我看懂。……最使我感得困难的是文字，……简直读起来比天书还难。……现在还没有一个中国人，用中国人所能看得懂的文字，写一篇文章告诉我们无产文学的理论究竟是怎么一回事。”字旁也有圆圈，怕排印麻烦，恕不照画了。总之，梁先生自认是一切中国人的代表，这些书既为自己所不懂，也就是为一切中国人所不懂，应该在中国断绝其生命，于是出示曰“此风断不可长”云。
+</p>
+
+<section >
+  <div class="left">1</div>
+  <div class="left">2</div>
+  <div class="right">3</div>
+  <!-- 默认环绕文字，因此文字内容可以夹在浮动元素中间显示 -->
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Morbi tristique sapien ac erat tincidunt, sit amet dignissim
+    lectus vulputate. Donec id iaculis velit. Aliquam vel
+    malesuada erat. Praesent non magna ac massa aliquet tincidunt
+    vel in massa. Phasellus feugiat est vel leo finibus congue.</p>
+</section>
+
+</body>
+</html>

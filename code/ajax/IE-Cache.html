@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax IE Cache</title>
+  <style>
+    .result {
+      width: 200px;
+      height: 200px;
+      border: solid 1px #bfa;
+    }
+  </style>
+
+  <script>
+  window.onload = function () {
+    let resultWrapper = document.querySelector(".result");
+    resultWrapper.addEventListener("mouseover", function () {
+      let request = new XMLHttpRequest();
+      // IE 有缓存，导致数据显示的不准确性增加；在每个请求中添加时间戳区分每次请求，以解决该问题
+      request.open("POST", "http://127.0.0.1:8000/ie-server?date="+Date.now());
+      request.send();
+      request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+          if (request.status >= 200 && request.status < 300) {
+            resultWrapper.innerHTML = request.response;
+          }
+        }
+      };
+    });
+  };
+  </script>
+
+</head>
+<body>
+<div class="result">
+
+</div>
+
+</body>
+</html>

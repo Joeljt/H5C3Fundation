@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax Json</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      border: 1px solid pink;
+    }
+  </style>
+  <script>
+  window.onload = function () {
+    let element = document.querySelector("div");
+    document.onkeyup = function () {
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://127.0.0.1:8000/json-server");
+      xhr.send();
+      xhr.responseType = "json";
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
+          // 正常情况下，返回值是 string，需要用 JSON.parse 进行解析
+          // element.innerHTML = JSON.parse(xhr.response);
+          // 设置 responseType = json 后，返回值就直接会是对象，不再需要进行手动解析了
+          // console.log(xhr.response)
+        }
+      };
+    };
+  };
+  </script>
+</head>
+<body>
+<div>
+
+</div>
+</body>
+</html>
