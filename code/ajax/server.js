@@ -24,7 +24,16 @@ app.post("/json-server", (request, response) => {
 app.post("/ie-server", (request, response) => {
   response.setHeader("Access-Control-Allow-Origin", "*");
   response.setHeader("Access-Control-Allow-Headers", "*");
-  response.send("测试 IE 缓存问题 - 3");
+  response.send("测试 IE 缓存问题 - 5");
+});
+
+// 创建路由规则
+app.get("/timeout-error-server", (request, response) => {
+  response.setHeader("Access-Control-Allow-Origin", "*");
+  response.setHeader("Access-Control-Allow-Headers", "*");
+  setTimeout(function () {
+    response.send("测试超时");
+  }, 1500);
 });
 
 // 监听端口启动服务
