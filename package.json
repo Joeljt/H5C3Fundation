@@ -1,5 +1,5 @@
 {
-  "name": "H5C3Fundation",
+  "name": "developnote",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Joeljt/H5C3Fundation.git"
+    "url": "git+https://github.com/Joeljt/developnote.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Joeljt/H5C3Fundation/issues"
+    "url": "https://github.com/Joeljt/developnote/issues"
   },
-  "homepage": "https://github.com/Joeljt/H5C3Fundation#readme",
+  "homepage": "https://github.com/Joeljt/developnote#readme",
   "dependencies": {
     "express": "^4.17.1",
     "nodemon": "^2.0.12"
