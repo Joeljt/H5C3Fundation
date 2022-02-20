@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax GET</title>
+  <style>
+    .result {
+      width: 200px;
+      height: 200px;
+      border: solid 1px #bfa;
+    }
+  </style>
+
+  <script>
+  window.onload = function () {
+    let resultWrapper = document.querySelector(".result");
+    resultWrapper.addEventListener("mouseover", function () {
+      let request = new XMLHttpRequest();
+      request.open("POST", "http://127.0.0.1:8000/server");
+
+      // 可以在 open 方法之后设置请求头
+      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+      request.setRequestHeader("test", "emmmm")
+
+      // post 请求在 send 方法中设置请求参数
+      request.send("这是post请求的参数");
+      request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+          if (request.status >= 200 && request.status < 300) {
+            resultWrapper.innerHTML = request.response;
+          }
+        }
+      };
+    });
+  };
+  </script>
+
+</head>
+<body>
+<div class="result">
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax GET</title>
+  <style>
+    .result {
+      width: 200px;
+      height: 200px;
+      border: solid 1px #bfa;
+    }
+  </style>
+
+  <script>
+  window.onload = function () {
+    let element = document.querySelector("button");
+    let resultWrapper = document.querySelector(".result");
+    element.onclick = function () {
+      // 创建 AJAX 对象
+      let xhr = new XMLHttpRequest();
+      // 初始化，设置请求方法和 url
+      xhr.open("GET", "http://127.0.0.1:8000/server");
+      // 发送请求
+      xhr.send();
+      // 绑定事件
+      // readystate 状态改变时的回调
+      // 0：默认值；
+      // 1：open 方法调用完毕；
+      // 2：send 方法调用完毕；
+      // 3: 服务端返回了部分结果；
+      // 4：服务端返回了全部结果
+      xhr.onreadystatechange = function (state) {
+        // 响应码在 200 段都认为是成功
+        if (xhr.readyState === 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+
+            console.log(xhr.status);
+            console.log(xhr.statusText);
+            console.log(xhr.getAllResponseHeaders());
+            console.log(xhr.responseURL);
+            console.log(xhr.response)
+
+            resultWrapper.innerHTML = xhr.response;
+          }
+        }
+      };
+
+    };
+
+  };
+  </script>
+
+</head>
+<body>
+<button>点击发送请求</button>
+<div class="result">
+
+</div>
+
+</body>
+</html>

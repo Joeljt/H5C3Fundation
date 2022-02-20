@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax GET</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <style>
+    body {
+      background-color: black;
+    }
+
+    p {
+      color: wheat;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <input type="text">
+  <p></p>
+
+  <script>
+
+    $("input").blur(function () {
+      // 使用 jq 实现 jsonp，必须在 url 中添加 callback=? 的参数
+      // 添加该参数后，再在后端响应中直接取该 callback 的值用作回调函数的名字
+      // 之后代码便可以正常回调到声明的匿名回调函数中
+      $.getJSON(`http://localhost:8000/jq-jsonp-server?name=${this.value}&callback=?`, function (data) {
+        // 回调里收到的就是对象，可以直接用
+        if (data.code === 500) {
+          document.querySelector("input").style.border = "1px solid red";
+        }
+        document.getElementsByTagName("p")[0].innerHTML = data.desc;
+      });
+    });
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax GET</title>
+  <style>
+    .result {
+      width: 200px;
+      height: 200px;
+      border: solid 1px #bfa;
+    }
+  </style>
+
+  <script>
+  window.onload = function () {
+    let element = document.querySelector("button");
+    let resultWrapper = document.querySelector(".result");
+
+    let isRequestSending = false; // 标记是否正在发送请求
+    let xhr = null; //
+
+    element.onclick = function () {
+
+      // 如果正在发送请求，就把上一个取消掉
+      if (isRequestSending) {
+        xhr.abort();
+      }
+
+      isRequestSending = true;
+      xhr = new XMLHttpRequest();
+      // 设置请求的超时时长
+      xhr.timeout = 2000;
+      xhr.ontimeout = function () {
+        resultWrapper.innerHTML = "超时了，你是 2G 网冲浪吗？"
+      };
+      xhr.onerror = function () {
+        alert("你的网络好像存在一些问题");
+        // 可以调用 abort 方法取消发出的请求
+        xhr.abort();
+      };
+      xhr.open("GET", "http://127.0.0.1:8000/timeout-error-server");
+      xhr.send();
+      xhr.onreadystatechange = function (state) {
+        // 响应码在 200 段都认为是成功
+        if (xhr.readyState === 4) {
+          // 请求成功后重置标记位
+          isRequestSending = false;
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resultWrapper.innerHTML = xhr.response;
+          }
+        }
+      };
+
+    };
+
+  };
+  </script>
+
+</head>
+<body>
+<button>点击发送请求</button>
+<div class="result">
+
+</div>
+
+</body>
+</html>

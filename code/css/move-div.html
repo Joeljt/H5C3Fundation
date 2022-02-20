@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>移动DIV</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      position: absolute;
+    }
+  </style>
+
+  <script type="text/javascript">
+  window.onload = function () {
+    let boxElement = document.getElementsByClassName("box")[0];
+
+    boxElement.onmousedown = function () {
+
+      boxElement.onmousemove = function (event) {
+        boxElement.style.left = event.clientX + "px";
+        boxElement.style.top = event.clientY + "px";
+      };
+
+      boxElement.onmouseup = function () {
+        boxElement.onmousemove = null;
+      };
+
+    };
+
+  };
+  </script>
+
+</head>
+<body>
+<div class="box">
+
+</div>
+
+</body>
+</html>
