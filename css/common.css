@@ -1,0 +1,28 @@
+/* 版心 */
+.w {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.shortcut {
+    height: 31px;
+    line-height: 31px;
+    background-color: #F1F1F1;
+}
+
+.shortcut ul li {
+    float: left;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.style_red {
+    color: #cb1632;
+}
+
