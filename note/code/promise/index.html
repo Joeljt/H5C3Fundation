@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <script src="MyPromise.js"></script>
+</head>
+<body>
+
+<script>
+
+  const otherPromise = new MyPromise((resolve) => {
+    setTimeout(() => {
+      resolve('hahahaha');
+    }, 5000)
+  })
+
+  const p = new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('12221');
+    }, 3000);
+  });
+
+
+  p.then(value => {
+    console.log(value)
+      throw new Error('throw error in first then')
+
+  })
+    .then(value => {
+      console.log('第二个 then')
+      throw new Error('throw error in second then')
+    }).catch(error => {
+    console.log(error.message)
+  }).finally(() => {
+    console.log('this is finally')
+  })
+
+</script>
+
+
+</body>
+</html>
